@@ -52,7 +52,7 @@ void printBook(Node *head) {
         printf("Title: %s\n", temp->book.title);
         printf("Author: %s\n", temp->book.author);
         printf("Category: %s\n", temp->book.category);
-        printf("Price: %f\n", temp->book.price);
+        printf("Price: %.3f\n", temp->book.price);
         temp = temp->next;
     }
 }
