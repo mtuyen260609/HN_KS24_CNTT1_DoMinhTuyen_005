@@ -25,22 +25,38 @@ Node *addBook(Node *head) {
     Node *newNode = (Node *) malloc(sizeof(Node));
     printf("Nhap ID sach: ");
     scanf("%d", &newNode->book.id);
-    fflush(stdin);
+    getchar();
+
     printf("Nhap ten sach: ");
     fgets(newNode->book.title, 100, stdin);
-    fflush(stdin);
+    newNode->book.title[strcspn(newNode->book.title, "\n")] = '\0';
+
     printf("Nhap ten tac gia: ");
     fgets(newNode->book.author, 100, stdin);
-    fflush(stdin);
+    newNode->book.author[strcspn(newNode->book.author, "\n")] = '\0';
+
     printf("Nhap the loai sach: ");
     fgets(newNode->book.category, 100, stdin);
-    fflush(stdin);
+    newNode->book.category[strcspn(newNode->book.category, "\n")] = '\0';
+
     printf("Nhap gia sach: ");
     scanf("%f", &newNode->book.price);
-    fflush(stdin);
+    getchar();
+
     newNode->next = NULL;
-    return newNode;
+
+    if (head == NULL) {
+        return newNode;
+    }
+    Node *temp = head;
+    while (temp->next != NULL) {
+        temp = temp->next;
+    }
+    temp->next = newNode;
+
+    return head;
 }
+
 
 void printBook(Node *head) {
     Node *temp = head;
